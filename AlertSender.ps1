@@ -284,11 +284,11 @@ $payload = [PSCustomObject]@{
 }
 
 	If ($Config.errorHook.enable -and $status -eq 'Failed') {
-		Invoke-RestMethod -Uri $Config.services.discord.errohook -Method Post -Body ($payload | ConvertTo-Json)
+		Invoke-RestMethod -Uri $Config.errorHook.hook -Method Post -Body ($payload | ConvertTo-Json)
 	}
 
 	If ($Config.errorHook.enable -and $status -eq 'Warning') {
-		Invoke-RestMethod -Uri $Config.services.discord.errohook -Method Post -Body ($payload | ConvertTo-Json)
+		Invoke-RestMethod -Uri $Config.errorHook.hook -Method Post -Body ($payload | ConvertTo-Json)
 	}
 
 

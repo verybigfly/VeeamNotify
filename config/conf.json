@@ -2,8 +2,7 @@
     "services": {
         "discord": {
             "webhook": "DiscordWebhook",
-            "user_id": "123456789",
-            "errorhook": "DiscordWebhook2"
+            "user_id": "123456789"
         },
         "slack": {
             "webhook": "SlackWebhook",
@@ -20,7 +19,8 @@
         "on_warning": false
     },
     "errorHook":{
-        "enable": true
+        "enable": true,
+        "hook": "DiscordWebhook2"
     },
     "client":{
         "name": "b3ater"
