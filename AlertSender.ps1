@@ -273,6 +273,24 @@ try {
 		Write-LogMessage -Tag 'WARN' -Message "Unable to determine 'mention on warning' configuration. User will not be mentioned."
 	}
 
+	$content = @"
+Error backup $Config.client.name
+"@
+
+$payload = [PSCustomObject]@{
+
+    content = $content
+
+}
+
+	If ($Config.errorHook.enable -and $status -eq 'Failed') {
+		Invoke-RestMethod -Uri $Config.services.discord.errohook -Method Post -Body ($payload | ConvertTo-Json)
+	}
+
+	If ($Config.errorHook.enable -and $status -eq 'Warning') {
+		Invoke-RestMethod -Uri $Config.services.discord.errohook -Method Post -Body ($payload | ConvertTo-Json)
+	}
+
 
 	# Define footer message.
 	Switch ($updateStatus.Status) {
